@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubens Pirie</title>
+  <style>
+    /* General CSS */
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* Business Card CSS */
+    .card h1 {
+      margin-bottom: 0px;
+    }
+
+    .card .title {
+      margin-top: 0px;
+      font-size: 1.15em;
+    }
+
+    .card p {
+      margin-bottom: 0;
+    }
+     
+    .card a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+    
+    .card .lighter {
+      font-weight: 250;
+      font-size: 0.9em;
+    }
+    
+    .card:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-container {
+      z-index: 2;
+    }
+
+    .card {
+      width: 350px;
+      height: 175px;
+      border: #000 3px solid;
+      padding: 20px;
+      text-align: center;
+      background-color: #fff;
+      transition: transform 0.2s;
+    }
+
+    /* About CSS */
+
+    .about {
+      opacity: 0;
+      transition: opacity 1s;
+      position: absolute;
+      top: 15%;
+      left: 10%;
+      transform: translate(0, 0);
+      text-align: left;
+      width: 80vw; /* Adjust width as needed */
+    }
+    
+    .about h2 {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 5em; /* Adjust size as needed */
+      margin: 0;
+    }
+    
+    .about p {
+      font-size: 1.2em; /* Adjust size as needed */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card-container">
+      <div class="card">          
+        <h1>Rubens Pirie</h1>
+        <p class="title">Electrical and Electronic Engineering Student</p>
+        <p class="lighter">&#x63;&#x6F;&#x6E;&#x74;&#x61;&#x63;&#x74;&commat;&#x72;&#x75;&#x2D;&#x70;&#x69;&#x72;&#x69;&#x65;&period;&#x63;&#x6F;&#x6D;</p>
+        <a class="lighter" href="https://www.ru-pirie.com">ru-pirie.com</a>
+      </div>
+    </div>
+    <div class="about">
+      <h2>Ru-Pirie</h2>
+      <p>Hi, I'm Rubens Pirie a second year Electrical and Electronic Engineering Student at the University of Southampton, UK.</p>
+    </div>
+  </div>
+  <br id="scroll-break">
+
+  <script>
+    function openAbout() {
+      document.querySelector('.card').style.transition = 'transform 1s';
+      document.querySelector('.card').style.transform = 'scale(0)';
+      
+      setTimeout(() => {
+        document.querySelector('.card').hidden = true;
+
+        document.querySelector('.about').style.transition = 'opacity 1s';
+        document.querySelector('.about').style.opacity = '1';   
+      }, 1000);
+    }
+
+    // onscroll 
+    document.addEventListener('scroll', () => {
+      openAbout();
+      document.querySelector('#scroll-break').hidden = true;
+    });
+
+    document.addEventListener('keypress', () => {
+      openAbout();
+    });
+
+    document.addEventListener('click', () => {
+      openAbout();
+    });
+
+    document.addEventListener('touchstart', () => {
+      openAbout();
+    });
+    
+  </script>
+</body>
+</html>
