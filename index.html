@@ -4,20 +4,54 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rubens Pirie</title>
   <style>
     /* General CSS */
-
     body {
       margin: 0;
       padding: 0;
-      background-color: #fff;
+      background-color: var(--background);
+      color: var(--text);
       font-family: 'Nunito', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    :root {
+      --light-background: #fff;
+      --light-text: #131313;
+      --dark-background: #131313;
+      --dark-text: #fff;
+
+      --background: var(--light-background);
+      --text: var(--light-text);
+    }
+
+    body.dark-mode {
+      --background: var(--dark-background);
+      --text: var(--dark-text);
+    }
+
+    /* Toggle Button CSS */
+    .toggle {
+      width: 44px;
+      height: 44px;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #ccc;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .toggle:hover {
+      background-color: #aaa;
     }
 
     /* Business Card CSS */
@@ -36,7 +70,7 @@
      
     .card a {
       text-decoration: none;
-      color: #000;
+      color: var(--text);
     }
 
     .card a:hover {
@@ -69,10 +103,10 @@
     .card {
       width: 350px;
       height: 175px;
-      border: #000 3px solid;
+      border: var(--text) 3px solid;
       padding: 20px;
       text-align: center;
-      background-color: #fff;
+      background-color: var(--background);
       transition: transform 0.2s;
     }
 
@@ -82,26 +116,55 @@
       opacity: 0;
       transition: opacity 1s;
       position: absolute;
-      top: 15%;
+      top: 10%;
       left: 10%;
       transform: translate(0, 0);
       text-align: left;
-      width: 80vw; /* Adjust width as needed */
+      width: 80vw;
     }
     
     .about h2 {
       font-family: 'Reenie Beanie', cursive;
-      font-size: 5em; /* Adjust size as needed */
-      margin: 0;
+      font-size: 5em; 
+      margin-top: 0;
+      margin-bottom: 10px;
     }
     
     .about p {
-      font-size: 1.2em; /* Adjust size as needed */
+      font-size: 1.15em; 
+      margin-top: 0;
+    }
+    
+    .about h3 {
+      font-size: 1.55em;
+      margin-bottom: 0; 
+    }
+
+    .about img {
+      width: 250px;
+      height: auto;
+      float: right;
+      margin-top: 20px;
+      margin-left: 30px;
+      margin-bottom: 30px;
+      border: var(--text) 3px solid;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 610px) {
+      .about img {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
+  
   <div class="container">
+    <button class="toggle" title="Change Theme"><span id="mode-icon" class="material-symbols-outlined">
+      light_mode
+      </span></button>
+
     <div class="card-container">
       <div class="card">          
         <h1>Rubens Pirie</h1>
@@ -111,29 +174,60 @@
       </div>
     </div>
     <div class="about">
+      <img src="./pfp.jpg" alt="Photo">
       <h2>Ru-Pirie</h2>
-      <p>Hi, I'm Rubens Pirie a second year Electrical and Electronic Engineering Student at the University of Southampton, UK.</p>
+      <p>Hi, I'm Rubens Pirie, a second-year Electrical and Electronic Engineering Student at the University of Southampton, UK.</p>
+
+      <h3>Background and Experience</h3>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa ullam consequatur odio ratione amet veniam assumenda, rem facere porro rerum voluptatum obcaecati eligendi id unde accusamus itaque accusantium sed veritatis?</p>
+
+      <h3>Education and Qualifications</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus, maxime voluptatem ex quas doloremque hic. Consequatur, nam vero corporis facere unde voluptate ipsa officiis impedit, neque exercitationem cumque, facilis repellat.</p>
+
+      <h3>Projects and Hobbies</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus voluptates tempora rerum, nostrum expedita hic amet adipisci cupiditate nam, accusamus doloribus quis velit nulla! Saepe quaerat placeat ad. Quasi, quae.</p>
+
+      <h3>Contact</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt doloremque nisi voluptas quo totam magnam eveniet, nobis, tempore tenetur repudiandae consequatur, culpa fuga distinctio. Commodi excepturi rem reiciendis incidunt? Aperiam.</p>
     </div>
   </div>
   <br id="scroll-break">
 
   <script>
+    // Dark Mode Toggle
+    document.querySelector('.toggle').addEventListener('click', (event) => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+      document.querySelector('#mode-icon').textContent = (document.body.classList.contains('dark-mode') ? 'dark_mode' : 'light_mode');
+     
+      event.stopPropagation();
+    });
+
+    // Apply saved theme on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('#mode-icon').textContent = 'dark_mode';
+      }
+    });
+
     function openAbout() {
       document.querySelector('.card').style.transition = 'transform 1s';
       document.querySelector('.card').style.transform = 'scale(0)';
+      document.querySelector('#scroll-break').hidden = true;
       
       setTimeout(() => {
         document.querySelector('.card').hidden = true;
 
         document.querySelector('.about').style.transition = 'opacity 1s';
         document.querySelector('.about').style.opacity = '1';   
+
+        document.querySelector('.container').style.overflow = 'auto';
       }, 1000);
     }
 
-    // onscroll 
     document.addEventListener('scroll', () => {
       openAbout();
-      document.querySelector('#scroll-break').hidden = true;
     });
 
     document.addEventListener('keypress', () => {
@@ -143,11 +237,6 @@
     document.addEventListener('click', () => {
       openAbout();
     });
-
-    document.addEventListener('touchstart', () => {
-      openAbout();
-    });
-    
   </script>
 </body>
 </html>
