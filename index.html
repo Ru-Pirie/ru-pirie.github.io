@@ -3,168 +3,98 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;800&family=Reenie+Beanie&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rubens Pirie</title>
   <style>
-    /* General CSS */
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--background);
-      color: var(--text);
-      font-family: 'Nunito', sans-serif;
-      transition: background-color 0.3s, color 0.3s;
-    }
+    .about a,.card a,body{color:var(--text)}
+    body{margin:0;padding:0;background-color:var(--background);font-family:Nunito,sans-serif;transition:background-color .3s,color .3s}
+    :root{--light-background:#fff;--light-text:#131313;--dark-background:#131313;--dark-text:#fff;--background:var(--light-background);--text:var(--light-text)}
+    body.dark-mode{--background:var(--dark-background);--text:var(--dark-text)}
+    .toggle{width:44px;height:44px;position:fixed;top:20px;left:20px;background-color:#ccc;border:none;padding:10px;cursor:pointer;border-radius:5px;transition:background-color .3s}
+    .about img,.card{border:var(--text) 3px solid}
+    .toggle:hover{background-color:#aaa}
+    .card h1,.card p{margin-bottom:0}
+    .card .title{margin-top:0;font-size:1.15em}
+    .card a{text-decoration:none}
+    .about a:hover,.card a:hover{text-decoration:underline}
+    .card .lighter{font-weight:250;font-size:.9em}
+    .card:hover{transform:scale(1.05);cursor:pointer}
+    .container{display:flex;justify-content:center;align-items:center;height:100vh;position:relative;overflow:hidden}
+    .card-container{z-index:2}
+    .card{width:350px;height:175px;padding:20px;text-align:center;background-color:var(--background);transition:transform .2s}
+    .about{opacity:0;transition:opacity 1s;position:absolute;top:10%;left:10%;transform:translate(0,0);text-align:left;width:80vw}
+    .about h2{font-family:'Reenie Beanie',cursive;font-size:5em;margin-top:0;margin-bottom:10px}
+    .about p{font-size:1.15em;margin-top:0}
+    .about h3{font-size:1.55em;margin-bottom:0}
+    .about img{width:250px;height:auto;float:right;margin-top:20px;margin-left:30px;margin-bottom:30px;border-radius:5px}
+    .about a{text-decoration:underline dashed}
+    @media (max-width:610px){.about img{display:none}}
 
-    :root {
-      --light-background: #fff;
-      --light-text: #131313;
-      --dark-background: #131313;
-      --dark-text: #fff;
-
-      --background: var(--light-background);
-      --text: var(--light-text);
-    }
-
-    body.dark-mode {
-      --background: var(--dark-background);
-      --text: var(--dark-text);
-    }
-
-    /* Toggle Button CSS */
-    .toggle {
-      width: 44px;
-      height: 44px;
+    /* Pop-up styles */
+    .popup {
       position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: #ccc;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .toggle:hover {
-      background-color: #aaa;
-    }
-
-    /* Business Card CSS */
-    .card h1 {
-      margin-bottom: 0px;
-    }
-
-    .card .title {
-      margin-top: 0px;
-      font-size: 1.15em;
-    }
-
-    .card p {
-      margin-bottom: 0;
-    }
-     
-    .card a {
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-    
-    .card .lighter {
-      font-weight: 250;
-      font-size: 0.9em;
-    }
-    
-    .card:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
-
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-container {
-      z-index: 2;
-    }
-
-    .card {
-      width: 350px;
-      height: 175px;
-      border: var(--text) 3px solid;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      color: #111;
       padding: 20px;
-      text-align: center;
-      background-color: var(--background);
-      transition: transform 0.2s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      display: none;
+      z-index: 1001;
+      width: 80%;
+      max-width: 400px;
     }
 
-    /* About CSS */
+    .popup.visible {
+      display: block;
+    }
 
-    .about {
-      opacity: 0;
-      transition: opacity 1s;
+    .popup .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
       position: absolute;
-      top: 10%;
-      left: 10%;
-      transform: translate(0, 0);
-      text-align: left;
-      width: 80vw;
-    }
-    
-    .about h2 {
-      font-family: 'Reenie Beanie', cursive;
-      font-size: 5em; 
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-    
-    .about p {
-      font-size: 1.15em; 
-      margin-top: 0;
-    }
-    
-    .about h3 {
-      font-size: 1.55em;
-      margin-bottom: 0; 
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
     }
 
-    .about img {
-      width: 250px;
-      height: auto;
-      float: right;
-      margin-top: 20px;
-      margin-left: 30px;
-      margin-bottom: 30px;
-      border: var(--text) 3px solid;
-      border-radius: 5px;
+    .close-btn:hover {
+      font-weight: bold;
+      transform: scale(1.2);
     }
 
-    @media (max-width: 610px) {
-      .about img {
-        display: none;
-      }
+    .popup .popup-content {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    /* Overlay styles */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1000;
+    }
+
+    .overlay.visible {
+      display: block;
     }
   </style>
 </head>
 <body>
-  
   <div class="container">
-    <button class="toggle" title="Change Theme"><span id="mode-icon" class="material-symbols-outlined">
-      light_mode
-      </span></button>
-
+    <button class="toggle" title="Change Theme"><span id="mode-icon" class="material-symbols-outlined">light_mode</span></button>
     <div class="card-container">
       <div class="card">          
         <h1>Rubens Pirie</h1>
@@ -176,67 +106,72 @@
     <div class="about">
       <img src="./rubenspirie.jpg" alt="Photo">
       <h2>Ru-Pirie</h2>
-      <p>Hi, I'm Rubens Pirie, a second-year Electrical and Electronic Engineering Student at the University of Southampton, UK.</p>
-
-      <h3>Background and Experience</h3>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa ullam consequatur odio ratione amet veniam assumenda, rem facere porro rerum voluptatum obcaecati eligendi id unde accusamus itaque accusantium sed veritatis?</p>
-
-      <h3>Education and Qualifications</h3>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus, maxime voluptatem ex quas doloremque hic. Consequatur, nam vero corporis facere unde voluptate ipsa officiis impedit, neque exercitationem cumque, facilis repellat.</p>
-
-      <h3>Projects and Hobbies</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus voluptates tempora rerum, nostrum expedita hic amet adipisci cupiditate nam, accusamus doloribus quis velit nulla! Saepe quaerat placeat ad. Quasi, quae.</p>
-
+      <p>Hi, I'm Rubens Pirie, a second-year Electrical and Electronic Engineering Student at the <a href="https://www.southampton.ac.uk/">University of Southampton</a>, UK.</p>
+      <h3>Qualifications</h3>
+      <p>I am currently enrolled on a 4 year masters degree course at the UoS (university of southampton) heading into my second year. So far I have thoroughly enjoyed all aspects of the course in particular the aspects of simulation with regards to FPGA's and PCB design. I have achieved A Levels at grades A* in Computer Science, A* in Mathematics, A in Physics and C in Further Maths as well as IGCSE certifications in 3D Design, Geography, History and Computer Science as well as others. A full copy of my CV can be found <a onclick="showPopup('Not here atm', 'CV PLACEHOLDER')">here</a>.</p>
       <h3>Contact</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt doloremque nisi voluptas quo totam magnam eveniet, nobis, tempore tenetur repudiandae consequatur, culpa fuga distinctio. Commodi excepturi rem reiciendis incidunt? Aperiam.</p>
+      <p>Your best bet for getting in touch ASAP is by <a href="mailto:&#x63;&#x6F;&#x6E;&#x74;&#x61;&#x63;&#x74;&commat;&#x72;&#x75;&#x2D;&#x70;&#x69;&#x72;&#x69;&#x65;&period;&#x63;&#x6F;&#x6D;">email</a>. I can also be found on <a href="https://github.com/ru-pirie">Github</a>, <a href="https://www.linkedin.com/in/ru-pirie/">Linkedin</a> or <a onclick="showPopup('ipirie', 'Discord Account')">Discord</a> if thats more your style.</p>
     </div>
   </div>
   <br id="scroll-break">
 
+  <!-- Overlay and Pop-up HTML -->
+  <div class="overlay" id="popupOverlay"></div>
+  <div class="popup" id="myPopup">
+    <button class="close-btn" onclick="closePopup()"><span class="material-symbols-outlined">
+      close
+      </span></button>
+    <div class="popup-content">
+      <h2></h2>
+      <p></p>
+    </div>
+  </div>
+
   <script>
-    // Dark Mode Toggle
-    document.querySelector('.toggle').addEventListener('click', (event) => {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-      document.querySelector('#mode-icon').textContent = (document.body.classList.contains('dark-mode') ? 'dark_mode' : 'light_mode');
-     
-      event.stopPropagation();
-    });
-
-    // Apply saved theme on page load
-    window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        document.querySelector('#mode-icon').textContent = 'dark_mode';
-      }
-    });
-
     function openAbout() {
-      document.querySelector('.card').style.transition = 'transform 1s';
-      document.querySelector('.card').style.transform = 'scale(0)';
-      document.querySelector('#scroll-break').hidden = true;
-      
+      let card = document.querySelector(".card");
+      let about = document.querySelector(".about");
+      card.style.transition = "transform 1s";
+      card.style.transform = "scale(0)";
+      document.querySelector("#scroll-break").hidden = true;
       setTimeout(() => {
-        document.querySelector('.card').hidden = true;
-
-        document.querySelector('.about').style.transition = 'opacity 1s';
-        document.querySelector('.about').style.opacity = '1';   
-
-        document.querySelector('.container').style.overflow = 'auto';
+        card.hidden = true;
+        about.style.transition = "opacity 1s";
+        about.style.opacity = "1";
+        document.querySelector(".container").style.overflow = "auto";
       }, 1000);
     }
 
-    document.addEventListener('scroll', () => {
-      openAbout();
+    document.querySelector(".toggle").addEventListener("click", (e) => {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+      document.querySelector("#mode-icon").textContent = document.body.classList.contains("dark-mode") ? "dark_mode" : "light_mode";
+      e.stopPropagation();
     });
 
-    document.addEventListener('keypress', () => {
-      openAbout();
+    window.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        document.querySelector("#mode-icon").textContent = "dark_mode";
+      }
     });
 
-    document.addEventListener('click', () => {
-      openAbout();
+    ["scroll", "keypress", "click"].forEach(event => {
+      document.addEventListener(event, openAbout);
     });
+
+    function showPopup(content, title) {
+      document.getElementById("myPopup").classList.add("visible");
+      document.getElementById("popupOverlay").classList.add("visible");
+
+      document.querySelector(".popup-content h2").textContent = title || "N/A";
+      document.querySelector(".popup-content p").textContent = content || "No message given.";
+    }
+
+    function closePopup() {
+      document.getElementById("myPopup").classList.remove("visible");
+      document.getElementById("popupOverlay").classList.remove("visible");
+    }
   </script>
 </body>
 </html>
