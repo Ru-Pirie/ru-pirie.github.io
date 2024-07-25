@@ -33,6 +33,46 @@
     .about a{text-decoration:underline dashed}
     @media (max-width:610px){.about img{display:none}}
 
+    /* Job styles */
+    .job {
+      border-left: 4px solid var(--text);
+      padding-left: 10px;
+      margin: 20px 0;
+      font-family: Nunito, sans-serif;
+    }
+
+    .job h4 {
+      font-size: 1.25em;
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .job h5 {
+      font-size: 1em;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .job h6 {
+      font-size: 0.9em;
+      margin: 0;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .job p {
+      font-size: 1.1em;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+        
+    .job hr {
+      border: none;
+      border-top: 1px solid var(--text);
+      margin: 10px 0;
+      opacity: 0.5;
+    }
+
     /* Pop-up styles */
     .popup {
       position: fixed;
@@ -106,9 +146,50 @@
     <div class="about">
       <img src="./rubenspirie.jpg" alt="Photo">
       <h2>Ru-Pirie</h2>
-      <p>Hi, I'm Rubens Pirie, a second-year Electrical and Electronic Engineering Student at the <a href="https://www.southampton.ac.uk/">University of Southampton</a>, UK.</p>
-      <h3>Qualifications</h3>
-      <p>I am currently enrolled on a 4 year masters degree course at the UoS (university of southampton) heading into my second year. So far I have thoroughly enjoyed all aspects of the course in particular the aspects of simulation with regards to FPGA's and PCB design. I have achieved A Levels at grades A* in Computer Science, A* in Mathematics, A in Physics and C in Further Maths as well as IGCSE certifications in 3D Design, Geography, History and Computer Science as well as others. A full copy of my CV can be found <a onclick="showPopup('Not here atm', 'CV PLACEHOLDER')">here</a>.</p>
+      <p>Hi, I'm Rubens Pirie, a passionate Electrical and Electronic Engineering Student at the <a href="https://www.southampton.ac.uk/">University of Southampton</a>, UK. I love to tinker and always have a project on the go!</p>
+      
+      <h3>Employment</h3>
+      <div class="job">
+        <h4>Electronics Design Intern</h4>
+        <h5>The University of Southampton</h5>
+        <h6>Jun 2024 - Present (Full Time)</h6>
+        <p>In this role I worked closely with the labs technicians and lecturers to update first year engineering students' laboratories. Moving from the EOL intranet material to Moodle, rewriting laboratory exercise instructions and creating new exercises to integrate into the updated ELEC1300 curriculum. Also in this role I liaised between departments to organise software and toolchain updates.</p>
+      </div>
+
+      <div class="job">
+        <h4>SUSU Tech Crew</h4>
+        <h5>University of Southampton Students' Union</h5>
+        <h6>May 2024 - Present (Part Time)</h6>
+        <p></p>
+      </div>
+
+      <div class="job">
+        <h4>Lead Technician</h4>
+        <h5>Exciting Escapes</h5>
+        <h6>Oct 2023 - Present (Contractor)</h6>
+        <p></p>
+        
+        <hr>
+
+        <h4>Technical Games Master</h4>
+        <h6>Nov 2022 - Mar 2023</h6>
+        <p></p>
+        
+        <hr>
+
+        <h4>Games Master</h4>
+        <h6>Jun 2021 - Nov 2022</h6>
+        <p></p>
+      </div>
+
+      <h3>Skills and Education</h3>
+      <p>I am a 2<sup>nd</sup> year EEE student at the UoS, I have really enjoyed my first year at university and look forward to completing my full masters degree. I have A Levels in Computer Science, Mathematics, Physics and Further Mathematics, the grades for these can be found in my <a onclick="showPopup('CV', 'Please check back later.')">CV</a>.</p>
+      <p>I am proficient in a variety of programming languages including C, C++, C#, Javascript and Python. I have dabbled with databases both SQL and no-SQL types as well as more engineering focussed tools such as MATLAB, Quartus and ModelSim.</p>
+      <p>I am proficient using KiCad for PCB design and manufacture however I have used others such as EagleCad and Altium Designer briefly. I am also very comfortable with SketchUp however due to its age I am learning and enjoying FreeCAD at the moment.</p>
+
+      <h3>Hobbies and Societies</h3>  
+      <p>At university I am a member of the Southampton University Stage Technicians Society, we put on regular productions for the performing arts societies at the university.</p>
+
       <h3>Contact</h3>
       <p>Your best bet for getting in touch ASAP is by <a href="mailto:&#x63;&#x6F;&#x6E;&#x74;&#x61;&#x63;&#x74;&commat;&#x72;&#x75;&#x2D;&#x70;&#x69;&#x72;&#x69;&#x65;&period;&#x63;&#x6F;&#x6D;">email</a>. I can also be found on <a href="https://github.com/ru-pirie">Github</a>, <a href="https://www.linkedin.com/in/ru-pirie/">Linkedin</a> or <a onclick="showPopup('ipirie', 'Discord Account')">Discord</a> if thats more your style.</p>
     </div>
